@@ -1,0 +1,43 @@
+name: C++ to EXE
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Download Repository
+        uses: actions/checkout@v4
+
+      - name: Setup MinGW
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: mingw-w64-x86_64-gcc
+
+      - name: Compile C++
+        shell: msys2 {0}
+        run: |
+          g++ -std=c++17 -O2 -static -static-libgcc -static-libstdc++ main.cpp -o main.exe
+
+      - name: Check EXE
+        shell: pwsh
+        run: |
+          if (!(Test-Path "main.exe")) {
+            throw "File main.exe tidak ditemukan!"
+          }
+          Write-Host "EXE berhasil dibuat!"
+          Get-Item main.exe | Format-List Name, Length
+
+      - name: Upload EXE
+        uses: actions/upload-artifact@v4
+        with:
+          name: program-exe
+          path: main.exe
+          if-no-files-found: error
+          retention-days: 30
