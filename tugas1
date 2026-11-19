@@ -1,0 +1,27 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    int n;
+    string nama[50], sekolah[50];
+
+    cout << "Mau input berapa data : ";
+    cin >> n;
+    cin.ignore();
+
+    for (int i = 0; i < n; i++) {
+        cout << endl << "Data " << i + 1 << endl;
+        cout << "Nama    : ";
+        getline(cin, nama[i]);
+        cout << "Sekolah : ";
+        getline(cin, sekolah[i]);
+    }
+
+    cout << endl << "=== Daftar Data ===" << endl;
+    for (int i = 0; i < n; i++) {
+        cout << i + 1 << ". " << nama[i] << " - " << sekolah[i] << endl;
+    }
+
+    return 0;
+}
