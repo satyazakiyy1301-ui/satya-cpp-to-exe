@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int nilai;
+    char huruf;
+
+    cout << "Masukkan nilai : ";
+    cin >> nilai;
+
+    huruf = (nilai > 90) ? 'A' : (nilai > 80) ? 'B' : (nilai > 70) ? 'C' : 'D';
+
+    cout << "Hasil : " << huruf << endl;
+    return 0;
+}
