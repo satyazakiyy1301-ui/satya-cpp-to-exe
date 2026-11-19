@@ -1,0 +1,36 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string nama[5] = {"Soto", "Rawon", "Pecel", "Teh", "Kopi"};
+    int harga[5] = {15000, 20000, 10000, 3000, 5000};
+    int porsi[5];
+    int total = 0, bayar;
+
+    cout << "Daftar Menu" << endl;
+    for (int i = 0; i < 5; i++) {
+        cout << i + 1 << ". " << nama[i] << " = " << harga[i] << endl;
+    }
+
+    cout << endl << "Isi jumlah (isi 0 kalau tidak pesan)" << endl;
+    for (int i = 0; i < 5; i++) {
+        cout << nama[i] << " : ";
+        cin >> porsi[i];
+        total += harga[i] * porsi[i];
+    }
+
+    cout << endl << "---- Struk ----" << endl;
+    for (int i = 0; i < 5; i++) {
+        if (porsi[i] > 0) {
+            cout << nama[i] << " x" << porsi[i] << " = " << harga[i] * porsi[i] << endl;
+        }
+    }
+    cout << "Total : " << total << endl;
+
+    cout << "Bayar : ";
+    cin >> bayar;
+    cout << "Kembali : " << bayar - total << endl;
+
+    return 0;
+}
